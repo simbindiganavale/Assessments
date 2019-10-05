@@ -20,7 +20,9 @@ public class Employee {
     @Id
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long employeeId;
+    private long id;
+    @Column(name="EMPLOYEE_NUMBER")
+    private long employeeNumber;
     @Column(name = "FIRST_NAME")
     private String firstName;
     @Column(name = "LAST_NAME")
