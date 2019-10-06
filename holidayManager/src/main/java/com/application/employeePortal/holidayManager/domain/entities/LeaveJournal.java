@@ -1,6 +1,6 @@
 package com.application.employeePortal.holidayManager.domain.entities;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,11 +24,26 @@ public class LeaveJournal {
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(name = "LEAVE_DAYS")
-    private int numberOfLeavesApplied;
-    @Column(name = "YEAR")
-    private Date dateOfRequest;
-    @ManyToOne(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "KEAVE_ACCOUNT_ID")
+    @Column(name = "LEAVE_DATE")
+    private LocalDate leaveDate;
+    @Column(name = "REQUEST_DATE")
+    private LocalDate dateOfRequest;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+        @JoinColumn(
+            name = "LEAVE_ACCOUNT_ID",
+            referencedColumnName = "ID"),
+        @JoinColumn(
+            name = "LEAVE_YEAR",
+            referencedColumnName = "YEAR")
+    })
     private Leave leaveAccount;
+
+    public LeaveJournal(LocalDate leaveDate2){
+        this.leaveDate=leaveDate2;
+    }
+
+    public LeaveJournal(){
+        super();
+    }
 }
