@@ -65,7 +65,7 @@ public class LeavesControllerAPI {
   }
 
   @PostMapping(path = "/applyLeaveAsnyc/{employeeNumber}")
-  @ResponseStatus(HttpStatus.CREATED)
+  @ResponseStatus(HttpStatus.ACCEPTED)
   public List<LeaveDAO> applyLeaveAsync(@PathVariable long employeeNumber, @RequestBody LeaveDAO leave) {
     List<LeaveDAO>resultList=transformAndReturn(leavesAyncService.createLeaveRequest(employeeNumber, leave));
     logger.info("THIS IS CALLED AFTER THE EXECUTION OF ABOVE SERVICE IS FINISHED");
