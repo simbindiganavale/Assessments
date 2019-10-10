@@ -1,8 +1,7 @@
 package com.application.employeePortal.holidayManager.domain.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +18,9 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="LEAVE_JOURNAL")
-public class LeaveJournal {
+public class LeaveJournal implements Serializable{
+ 
+    private static final long serialVersionUID = -2038533686114732499L;
     @Id
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

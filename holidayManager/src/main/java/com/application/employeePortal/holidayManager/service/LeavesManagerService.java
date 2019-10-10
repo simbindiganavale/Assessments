@@ -6,6 +6,7 @@ import com.application.employeePortal.holidayManager.domain.dao.LeaveDAO;
 
 public interface LeavesManagerService {
      List<LeaveDAO> getLeavesOfEmployee(long employeeNumber);
-     void addLeave(long employeeNumber,int year, String leaveDate);
+     List<LeaveDAO> createLeaveRequest(long employeeNumber,LeaveDAO leave);
      void removeLeave(long employeeNumber,int year, String leaveDate);
+     List<LeaveDAO> createOrUpdateLeaveQuota(long employeeNumber,LeaveDAO leave);
 }

@@ -8,9 +8,12 @@ import java.util.Optional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -25,14 +28,30 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "LEAVE")
+@IdClass( LeaveIdentity.class )
 @NamedQueries({
         @NamedQuery(name = "Leave.findLeavesByEmployeeNumber", query = "Select l from Leave l where l.employee.employeeNumber=?1"),
         @NamedQuery(name = "Leave.findLeavesByEmployeeAndYear", query = "Select l from Leave l where l.employee.employeeNumber=?1 and l.id.year=?2") })
 
 public class Leave {
 
-    @EmbeddedId
-    private LeaveIdentity id;
+    public Leave(){
+        super();
+    }
+
+    public Leave(Employee parent){
+        this.employee=parent;
+        this.employee.getLeaves().add(this);
+    }
+
+    @Id
+    @Column(unique = true, name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
+ 
+    @Id
+    @Column(name = "YEAR")
+    private int year;
     @Column(name = "AVAILABLE_LEAVES")
     private int leaveBalance;
     @Column(name = "ALLOCATED_LEAVES")

@@ -1,7 +1,9 @@
 package com.application.employeePortal.holidayManager.domain.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +21,10 @@ import lombok.Data;
 @Entity
 @Table(name="EMPLOYEE")
 @NamedQueries({@NamedQuery(name="Employee.findByEmployeeNumber", query="Select e from Employee e where e.employeeNumber=?1")})
-public class Employee {
+public class Employee implements Serializable {
+
+    private static final long serialVersionUID = 9212385747055970220L;
+    
     @Id
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -30,6 +35,15 @@ public class Employee {
     private String firstName;
     @Column(name = "LAST_NAME")
     private String lastName;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Leave>leaves;
+
+    public void allocateLeaves(int allocatedQuota, int year){
+        Leave leaveObjToPersist=leaves.stream().filter(obj -> obj.getYear()==year).findAny()
+        .orElse(new Leave(this));
+        leaveObjToPersist.setAllocatedLeaves(allocatedQuota);
+        leaveObjToPersist.setLeaveBalance(allocatedQuota);
+       // leaveObjToPersist.setId(Optional.ofNullable(leaveObjToPersist.getId()).orElse(new LeaveIdentity())); 
+        leaveObjToPersist.setYear(year);
+    }
 }
