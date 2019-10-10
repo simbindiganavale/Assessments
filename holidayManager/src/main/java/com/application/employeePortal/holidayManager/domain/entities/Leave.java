@@ -60,7 +60,7 @@ public class Leave {
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "leaveAccount", cascade = { CascadeType.ALL }, orphanRemoval = true)
-    private List<LeaveJournal> leavesTaken=new ArrayList<LeaveJournal>();
+    private List<LeaveJournal> leavesTaken;
 
     public void addEntryToJournal(LocalDate leaveDate) {
         LeaveJournal journalObj = null;

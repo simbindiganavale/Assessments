@@ -13,4 +13,5 @@ public interface LeavesManagerFactory{
     public List<LeaveDAO> getLeavesOfEmployee(long employeeNumber);
     public List<LeaveDAO> createOrUpdateLeaveQuota(long employeeNumber,int year, int allocatedQuota);
     public EmployeeDAO getEmployeeByNumber(long employeeNumber);
+    public List<LeaveDAO> getLeavesOfEmployeeTransactional(long employeeNumber);
 }

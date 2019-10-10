@@ -67,6 +67,12 @@ public class LeavesManagerFactoryImpl implements LeavesManagerFactory {
         return mapper.toListOfLeaveDAO(leavesRepo.findLeavesByEmployeeNumber(employeeNumber));
     }
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public List<LeaveDAO> getLeavesOfEmployeeTransactional(long employeeNumber){
+        validator.validateEmployee(employeeRepo.findByEmployeeNumber(employeeNumber));
+        return mapper.toListOfLeaveDAO(leavesRepo.findLeavesByEmployeeNumber(employeeNumber));
+    }
+
     private void validateLeavesBeforeUpdate(Employee retreivedEmployee,int year){
         validator.validateLeaveAllocation(retreivedEmployee, year);
         validator.validateLeaveEligibility(retreivedEmployee, year);
