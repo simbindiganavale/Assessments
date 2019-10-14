@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class EmployeeItemProcessor implements ItemProcessor<Employee, EmployeeDAO> {
 
-    private static final Logger log = LoggerFactory.getLogger(EmployeeItemProcessor.class);
-
     @Autowired
     LeavesDomainMapper mapper;
 
@@ -21,8 +19,7 @@ public class EmployeeItemProcessor implements ItemProcessor<Employee, EmployeeDA
     public EmployeeDAO process(final Employee employee) throws Exception {
         EmployeeDAO output=mapper.employeeToDao(employee);
         output.setLastName(output.getLastName().toUpperCase());
-        log.info("Processed " + output + " from " + employee);
-        return new EmployeeDAO();
+        return output;
     }
 
 }
