@@ -4,9 +4,6 @@ import com.application.services.leavesSummaryBatch.domain.dao.EmployeeDAO;
 import com.application.services.leavesSummaryBatch.domain.entities.Employee;
 import com.application.services.leavesSummaryBatch.mapper.LeavesDomainMapper;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 
