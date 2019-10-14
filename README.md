@@ -5,7 +5,7 @@ HolidayManagement
 A Spring Boot REST API for managing leaves of employees. 
 
 # Stack
-Spring Boot, H2 database, Springdata JPA, Hibernate, Lombok, Swagger and Spring security with in memory authentication. 
+Spring Boot, Spring Transactional annotation(JpaTransactionManager), H2 database, Springdata JPA, Hibernate, Lombok, Swagger and Spring security with in memory authentication. 
 
 # Swagger API documentation
 http://localhost:8080/swagger-ui.html
