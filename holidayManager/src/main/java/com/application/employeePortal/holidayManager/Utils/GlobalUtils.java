@@ -27,14 +27,4 @@ public class GlobalUtils {
         return LocalDateTime.parse(date, formatter);
     }
 
-
-    /**
-     * Convert string to Util date.
-     * @param date
-     * @param pattern
-     * @return
-    
-    public static Date parseToUtilDate(String date, String pattern){
-      return LocalDateTime.parse(pattern).parseDateTime(date).toDate();
-    } */
 }

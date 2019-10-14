@@ -168,15 +168,4 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
     }
 
-
-    /** 
-    @ExceptionHandler({ ValidationFailure.class })
-    public ResponseEntity<Object> handleValidationFailure(final Exception ex, final WebRequest request) {
-        logger.info(ex.getClass().getName());
-        logger.error("error", ex);
-        //
-        final RestApiError apiError = new RestApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "Validation failed");
-        return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
-    }*/
-
 }

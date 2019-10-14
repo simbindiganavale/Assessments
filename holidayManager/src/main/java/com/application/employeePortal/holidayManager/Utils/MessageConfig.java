@@ -16,7 +16,7 @@ public class MessageConfig {
      * Load property files and provide an instance of MessageResource
      * @return
      */
-    @Bean("riskLabelResource")
+    @Bean("errorLabelResource")
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource= new ReloadableResourceBundleMessageSource();
         messageSource.addBasenames("classpath:errorMessages");

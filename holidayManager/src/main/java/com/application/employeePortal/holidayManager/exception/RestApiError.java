@@ -17,7 +17,6 @@ private LocalDateTime timestamp;
 private String message;
 private String debugMessage;
 private List<String> errors;
-//private List<ApiSubError> subErrors;
 
 private RestApiError() {
     timestamp = LocalDateTime.now();
