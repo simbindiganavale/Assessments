@@ -1,7 +1,6 @@
 package com.application.employeePortal.holidayManager.domain.entities;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
